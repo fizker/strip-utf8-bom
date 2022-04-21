@@ -1,11 +1,13 @@
-import * as fs from "fs"
+import { promises as fs } from "fs"
 
-export function stripUTF8BOM(filenames) {
-	filenames.forEach(filename => {
-		let content = fs.readFileSync(filename)
+export async function stripUTF8BOM(filenames) {
+	const tasks = filenames.map(filename => async () => {
+		let content = await fs.readFile(filename)
 		if(content[0] === 239 && content[1] === 187 && content[2] === 191) {
 			content = content.slice(3)
 		}
-		fs.writeFileSync(filename, content)
+		await fs.writeFile(filename, content)
 	})
+
+	await tasks.reduce((p, t) => p.then(t), Promise.resolve())
 }

@@ -42,4 +42,4 @@ const filenames = process.argv.slice(2)
 		})
 	})
 
-stripUTF8BOM(filenames)
+await stripUTF8BOM(filenames)
