@@ -21,7 +21,12 @@ function findGitRoot() {
 	return null
 }
 
-const gitRoot = findGitRoot()
+// lazy construct that overwrites itself once it have been run once
+let gitRoot = () => {
+	const root = findGitRoot()
+	gitRoot = () => root
+	return root
+}
 
 const filenames = process.argv.slice(2)
 	.flatMap(x => {
@@ -34,11 +39,11 @@ const filenames = process.argv.slice(2)
 				return x
 			}
 
-			if(gitRoot == null) {
+			if(gitRoot() == null) {
 				throw new Error("Could not find git root")
 			}
 
-			return gitRoot + filename
+			return gitRoot() + filename
 		})
 	})
 
