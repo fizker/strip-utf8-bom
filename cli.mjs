@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-const fs = require("fs")
-const path = require("path")
+import fs from "fs"
+import path from "path"
+import { stripUTF8BOM } from "./index.mjs"
 
 function findGitRoot() {
 	let p = process.cwd()
@@ -41,10 +42,4 @@ const filenames = process.argv.slice(2)
 		})
 	})
 
-filenames.forEach(filename => {
-	let content = fs.readFileSync(filename)
-	if(content[0] === 239 && content[1] === 187 && content[2] === 191) {
-		content = content.slice(3)
-	}
-	fs.writeFileSync(filename, content)
-})
+stripUTF8BOM(filenames)
