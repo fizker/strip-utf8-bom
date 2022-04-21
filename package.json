@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Strips the UTF8 BOM from files",
   "main": "index.mjs",
+  "bin": {
+    "strip-utf8-bom": "cli.mjs"
+  },
   "scripts": {
     "test": "mocha"
   },
