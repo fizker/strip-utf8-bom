@@ -1,7 +1,7 @@
 {
   "name": "@fizker/strip-utf8-bom",
   "version": "1.0.0",
-  "description": "Strips the UTF8 BOM from files",
+  "description": "A tool for stripping the UTF-8 byte-order-marker from files",
   "main": "index.mjs",
   "bin": {
     "strip-utf8-bom": "cli.mjs"
@@ -16,5 +16,13 @@
     "byte-order-marker"
   ],
   "author": "Benjamin Horsleben",
+  "homepage": "https://github.com/fizker/strip-utf8-bom#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fizker/strip-utf8-bom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fizker/strip-utf8-bom/issues"
+  },
   "license": "WTFPL"
 }
