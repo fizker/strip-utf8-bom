@@ -1,5 +1,5 @@
 {
-  "name": "strip-utf8-bom",
+  "name": "@fizker/strip-utf8-bom",
   "version": "1.0.0",
   "description": "Strips the UTF8 BOM from files",
   "main": "index.mjs",
