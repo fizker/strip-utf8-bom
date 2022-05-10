@@ -27,3 +27,21 @@ It also supports being used as in a node.js app:
 	```
 
 The `stripUTF8BOM()` function takes 1 or more files, or an array of files, and starts processing them. It returns a promise that resolves when all files have been processed.
+
+## Testing for BOM
+
+The module also supports testing a single file to see if it starts with the UTF-8 BOM.
+
+To use this from the CLI, pass in either the `--check` or `-c` flag: `strip-utf8-bom --check <file>`. The CLI exists with 0 if the file does not have a BOM, and with 1 if it does start with the BOM.
+
+To use this from node.js, import the `hasBOM` function instead of (or in addition to) the `stripUTF8BOM` function:
+
+```js
+import { hasBOM } from "strip-utf8-bom"
+
+if(await hasBOM(file1)) {
+	// the file starts with the UTF-8 BOM
+}
+```
+
+Note that in both cases, if multiple files are passed in, only the first file will be checked.

@@ -2,7 +2,7 @@
 
 import fs from "fs"
 import path from "path"
-import { stripUTF8BOM } from "./index.mjs"
+import { stripUTF8BOM, hasBOM } from "./index.mjs"
 
 function findGitRoot() {
 	let p = process.cwd()
@@ -26,6 +26,13 @@ let gitRoot = () => {
 	const root = findGitRoot()
 	gitRoot = () => root
 	return root
+}
+
+const isCheck = process.argv.find(x => x == "--check" || x == "-c") != null
+if(isCheck) {
+	const filename = process.argv.slice(2).find(x => !x.startsWith("-"))
+	const exitCode = await hasBOM(filename) ? 1 : 0
+	process.exit(exitCode)
 }
 
 const filenames = process.argv.slice(2)
