@@ -1,4 +1,4 @@
-import { promises as fs } from "fs"
+import fs from "fs/promises"
 
 async function _hasBOM(fd) {
 	const { buffer } = await fd.read({
