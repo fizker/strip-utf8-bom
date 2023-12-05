@@ -12,6 +12,7 @@ export async function hasBOM(filename) {
 	const fd = await fs.open(filename, "r")
 	const hasBOM = _hasBOM(fd)
 	await fd.close()
+	return hasBOM
 }
 
 export async function stripUTF8BOM(...filenames) {
